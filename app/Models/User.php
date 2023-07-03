@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Actions\UserAvatar;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -42,4 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * If the user avatar is empty, generate one using online service
+     *
+     * @return mixed|string
+     */
+    public function getAvatarUrl()
+    {
+        return ! empty($this->avatar) ?
+            (new UserAvatar)->get($this) :
+            config('avatar.service_url').'?name='.urlencode($this->name).'&color=fff&background='.substr(md5($this->name), 0, 6).'&size='.config('avatar.size');
+    }
 }

@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from "tailwindcss/defaultTheme";
-import colors from 'tailwindcss/colors';
+import colors from "tailwindcss/colors";
 import forms from "@tailwindcss/forms";
-import variables from '@mertasan/tailwindcss-variables';
-import typography from '@tailwindcss/typography';
+import variables from "@mertasan/tailwindcss-variables";
+import typography from "@tailwindcss/typography";
 
 // Add your custom theme colors here
 export const themeColors = {
     primary: colors.blue,
-    secondary: colors.orange,
+    secondary: colors.gray,
     success: colors.green,
     warning: colors.amber,
     danger: colors.red,

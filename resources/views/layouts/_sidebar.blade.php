@@ -3,16 +3,16 @@
     <a href="/">
         <div class="sidebar-header">
             <div class="sidebar-logo-icon">
-                <img src="./images/logo-small.svg" alt="logo" class="h-[45px]" />
+                <x-application-logo class="h-[45px]" />
             </div>
 
             <div class="sidebar-logo-text">
                 <h1 class="flex text-xl">
-                    <span class="font-bold text-slate-800 dark:text-slate-200"> Admin </span>
-                    <span class="font-semibold text-primary-500">Toolkit</span>
+                    <span class="font-bold text-slate-800 dark:text-slate-200"> SILA </span>
+                    <span class="font-semibold text-primary-500">SI</span>
                 </h1>
 
-                <p class="whitespace-nowrap text-xs text-slate-400">Simple &amp; Customizable</p>
+                <p class="whitespace-nowrap text-xs text-slate-400">Sistem Pelatihan Jasa Konstruksi</p>
             </div>
         </div>
     </a>
@@ -22,27 +22,37 @@
     <ul class="sidebar-content">
         <!-- Dashboard -->
         <li>
-            <a href="javascript:void(0);" class="sidebar-menu active">
+            <a href="{{ route('dashboard') }}"
+                class="sidebar-menu {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <span class="sidebar-menu-icon">
                     <i data-feather="home"></i>
                 </span>
                 <span class="sidebar-menu-text">Dashboard</span>
+            </a>
+        </li>
+
+
+        <div class="sidebar-menu-header">Applications</div>
+        <li>
+            <a href="javascript:void(0);" class="sidebar-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                <span class="sidebar-menu-icon">
+                    <i data-feather="settings"></i>
+                </span>
+                <span class="sidebar-menu-text">Pengaturan</span>
                 <span class="sidebar-menu-arrow">
                     <i data-feather="chevron-right"></i>
                 </span>
             </a>
             <ul class="sidebar-submenu">
                 <li>
-                    <a href="/" class="sidebar-submenu-item active">Analytics</a>
+                    <a href="#" class="sidebar-submenu-item">Hak Akses</a>
                 </li>
                 <li>
-                    <a href="./ecommerce.html" class="sidebar-submenu-item">Ecommerce</a>
+                    <a href="{{ route('users.index') }}"
+                        class="sidebar-submenu-item {{ request()->routeIs('users.*') ? 'active' : '' }}">Pengguna</a>
                 </li>
             </ul>
         </li>
-
-        <div class="sidebar-menu-header">Applications</div>
-
         <!-- Email -->
         <li>
             <a href="./email.html" class="sidebar-menu">

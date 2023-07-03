@@ -3,7 +3,8 @@
     <a href="/">
         <div class="sidebar-header">
             <div class="sidebar-logo-icon">
-                <img src="./images/logo-small.svg" alt="logo" class="h-[45px]" />
+                <x-application-logo class="h-[45px]" />
+                {{-- <img src="./images/logo-small.svg" alt="logo" class="h-[45px]" /> --}}
             </div>
 
             <div class="sidebar-logo-text">
