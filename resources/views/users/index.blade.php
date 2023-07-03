@@ -92,10 +92,10 @@
                     </button>
                 </div>
 
-                <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-user')">
+                <a href="{{ route('users.create') }}" class="btn btn-primary">
                     <i data-feather="plus" height="1rem" width="1rem"></i>
                     <span class="hidden sm:inline-block">Add User</span>
-                </x-primary-button>
+                </a>
             </div>
             <!-- User Action Ends -->
         </div>
@@ -124,9 +124,6 @@
                             </td>
                             <td>
                                 <div class="flex items-center gap-2">
-                                    {{-- <div class="avatar avatar-circle">
-                                                <img src="./images/avatar1.png" class="avatar-img" alt="avatar-img" />
-                                            </div> --}}
                                     <div>
                                         <p class="whitespace-nowrap font-medium">{{ $item->name }}</p>
                                         <p class="text-xs text-slate-400">{{ $item->email }}</p>
@@ -146,28 +143,7 @@
                             <td class="whitespace-nowrap">{{ $item->created_at->diffForHumans() }}</td>
                             <td class="whitespace-nowrap">{{ $item->updated_at->diffForHumans() }}</td>
                             <td>
-                                {{-- <x-danger-button class="btn-sm" x-data="{{ $item->id }}"
-                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
-                                    <i data-feather="trash" height="1rem" width="1rem"></i>
-                                </x-danger-button> --}}
-                                {{-- <x-confirm-delete :action="route('users.destroy', $item->id)" /> --}}
-
-
-                                {{-- <form method="POST" action="{{ route('users.destroy', $item) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link text-danger">
-                                        <i data-feather="trash" height="1rem" width="1rem"></i>
-                                    </button>
-                                </form> --}}
-                                <form method="POST" action="{{ route('users.destroy', $item) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <x-dropdown-link :href="route('users.destroy', $item)"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('Delete') }}
-                                    </x-dropdown-link>
-                                </form>
+                                [todo:action]
                             </td>
                         </tr>
                     @empty
@@ -179,74 +155,4 @@
             </table>
         </div>
     </div>
-    <x-modal name="add-user" :show="$errors->userAdd->isNotEmpty()" focusable>
-        <div class="modal-header">
-            <div class="flex items-center justify-between">
-                <h6>Basic Modal</h6>
-                <button type="button"
-                    class="btn btn-plain-secondary dark:text-slate-300 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
-                    x-on:click="$dispatch('close')">
-                    <i data-feather="x" width="1.5rem" height="1.5rem"></i>
-                </button>
-            </div>
-        </div>
-        <form method="post" action="{{ route('users.store') }}">
-            @csrf
-            <div class="modal-body">
-                <div class="py-2">
-                    <x-input-label for="name" value="Nama Lengkap" class="label-required" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1"
-                        placeholder="Nama Lengkap" />
-                    <x-input-error :messages="$errors->userAdd->get('name')" class="mt-1" />
-                </div>
-                <div class="py-2">
-                    <x-input-label for="email" value="Email" class="label-required" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1"
-                        placeholder="Email" />
-                    <x-input-error :messages="$errors->userAdd->get('email')" class="mt-1" />
-                </div>
-                <div class="py-2">
-                    <x-input-label for="password" value="Password" class="label-required" />
-                    <x-text-input id="password" name="password" type="password" class="mt-1"
-                        placeholder="Password" />
-                    <x-input-error :messages="$errors->userAdd->get('password')" class="mt-1" />
-                </div>
-            </div>
-            <div class="modal-footer mt-2">
-                <div class="flex items-center justify-end gap-4">
-                    <x-secondary-button x-on:click="$dispatch('close')">
-                        {{ __('Cancel') }}
-                    </x-secondary-button>
-
-                    <x-primary-button class="ml-3">
-                        Save
-                    </x-primary-button>
-                </div>
-            </div>
-        </form>
-    </x-modal>
-    {{-- <x-modal name="confirm-user-deletion" :show="" focusable>
-        <form method="post" action="{{ route('users.destroy') }}" class="p-6">
-            @csrf
-            @method('delete')
-
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
-
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
-
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ml-3">
-                    {{ __('Delete Account') }}
-                </x-danger-button>
-            </div>
-        </form>
-    </x-modal> --}}
 </x-app-layout>

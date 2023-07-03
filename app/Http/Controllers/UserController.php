@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -44,9 +44,10 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // notify()->success('Pengguna '.$user->name.' berhasil ditambahkan ⚡️');
+        notify()->success('Pengguna '.$user->name.' berhasil ditambahkan ⚡️');
 
-        return Redirect::route('users.index')->with('success', 'Pengguna <b>' . $user->name . ' </b>berhasil ditambahkan');
+        return Redirect::route('users.index');
+        // return Redirect::route('users.index')->with('success', 'Pengguna <b>' . $user->name . ' </b>berhasil ditambahkan');
     }
 
     /**
@@ -82,6 +83,9 @@ class UserController extends Controller
 
         $user->delete();
 
-        return Redirect::route('users.index')->with('success', 'Pengguna <b>' . $user->name . ' </b>berhasil dihapus');
+        notify()->success('Pengguna '.$user->name.' berhasil dihapus. ⚡️');
+
+        return Redirect::route('users.index');
+        // return Redirect::route('users.index')->with('success', 'Pengguna <b>' . $user->name . ' </b>berhasil dihapus');
     }
 }
